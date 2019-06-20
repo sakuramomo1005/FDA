@@ -27,3 +27,5 @@ Step 2.2: with orthgonal transformation
 Step 3.1: without orthognal tranformation
 
 Step 3.2: with orthgonal transformation 
+
+As we know, when W is larger, the difference is larger, how about use the same W, which is the max W?
