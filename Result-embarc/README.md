@@ -10,6 +10,8 @@
 
 ### Step 1: randomly choose two covariates
 
+Age + Severity
+
 Step 1.1: without orthognal tranformation
 
 Step 1.2: with orthgonal transformation 
