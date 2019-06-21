@@ -40,3 +40,11 @@ As we know, when W is larger, the difference is larger, how about use the same W
 however, the boundary plots are too ugly.
 
 try use the previous codes
+
+
+
+![](https://github.com/sakuramomo1005/FDA/blob/master/Result-embarc/scenario1.gif)
+
+
+![](https://github.com/sakuramomo1005/FDA/blob/master/Result-embarc/scenario2.gif)
+
