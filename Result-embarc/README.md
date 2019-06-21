@@ -33,9 +33,10 @@ As we know, when W is larger, the difference is larger, how about use the same W
 ### Plots 
 
 1. trajectory plots
-
 2. boundary plot 
-
 3. table 
-
 4. ellipse
+
+however, the boundary plots are too ugly.
+
+try use the previous codes
