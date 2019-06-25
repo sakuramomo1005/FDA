@@ -20,3 +20,16 @@ To-do
    Even the smoothed one, the points are not classed well.
    
 3. Wrap up the formulas.
+
+# 2019-06-23
+
+1. Tried to get the formula to calculate the difference between f1 and f2, with baseline covariates. 
+
+# 2019-06-24
+
+To-do
+
+1. Embarc dataset, try other covariates
+2. Re-draw the ellipse, let the arrows be the direction of gammas
+3. Use simulation data, try to vary alpha value to see how the cluster table changes
+4. New formula plot
