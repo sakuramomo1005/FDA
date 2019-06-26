@@ -42,9 +42,12 @@ however, the boundary plots are too ugly.
 try use the previous codes
 
 
-
 ![](https://github.com/sakuramomo1005/FDA/blob/master/Result-embarc/scenario1.gif)
 
-
 ![](https://github.com/sakuramomo1005/FDA/blob/master/Result-embarc/scenario2.gif)
+
+![](https://github.com/sakuramomo1005/FDA/blob/master/Result-embarc/agechangescore.gif)
+
+![](https://github.com/sakuramomo1005/FDA/blob/master/Result-embarc/baselineduration.gif)
+
 
