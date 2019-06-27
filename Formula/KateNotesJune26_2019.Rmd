@@ -1,0 +1,132 @@
+---
+title: "Purity calculation"
+date: 2019-06-26
+header-includes:
+  - \usepackage{color}
+output: pdf_document
+---
+
+
+The new defined purity function: 
+
+$$g = \int log(f_1) f_1 - \int log(f_2) f_1 + \int log(f_2) f_2 - \int log(f_1) f_2$$
+where, 
+$$f_1 = \frac{1}{\sqrt{( (2\pi)^p |D_1|)}} exp(-\frac{1}{2} (z - \mu_1)^{\prime} D_1^{-1}(z - \mu_1))$$
+$$f_2 = \frac{1}{\sqrt{( (2\pi)^p |D_2|)}} exp(-\frac{1}{2} (z - \mu_2)^{\prime} D_2^{-1}(z - \mu_2))$$
+We know that
+$$\begin{aligned}
+\int f_1 log f_1 =& E_1(-\frac{p}{2} log(2\pi) - \frac{1}{2}log(|D_1|) -\frac{1}{2}(z - \mu_1)^{\prime} D_1^{-1}(z - \mu_1)) \\
+=&-\frac{p}{2} log(2\pi) - \frac{1}{2}log(|D_1|) -\frac{1}{2}E_1[(z - \mu_1)^{\prime} D_1^{-1}(z - \mu_1)]
+\end{aligned}$$
+And 
+$$\begin{aligned}
+E_1[(z - \mu_1)^{\prime} D_1^{-1}(z - \mu_1)] =& E_1[tr((z - \mu_1)^{\prime} D_1^{-1}(z - \mu_1))]  \\
+=& E_1[tr(D_1^{-1}(z - \mu_1)^{\prime}(z - \mu_1))] \\
+=& tr( E_1[D_1^{-1}(z - \mu_1)^{\prime}(z - \mu_1)]) \\
+=& tr(D_1^{-1} E_1[(z - \mu_1)^{\prime}(z - \mu_1)]) \\
+=& tr(D_1^{-1} D_1) = tr(I_{p}) = p
+\end{aligned}$$
+Therefore, 
+$$\int f_1 log f_1 =-\frac{p}{2} log(2\pi) - \frac{1}{2}log(|D_1|) -\frac{p}{2}$$
+Similarly,
+$$\int f_2 log f_2 =-\frac{p}{2} log(2\pi) - \frac{1}{2}log(|D_2|) -\frac{p}{2}$$
+
+$$\begin{aligned}
+\int f_1 log f_2 =  & E_1(-\frac{p}{2} log(2\pi) - \frac{1}{2}log(|D_2|) -\frac{1}{2}(z - \mu_2)^{\prime} D_2^{-1}(z - \mu_2)) \\
+= & -\frac{p}{2} log(2\pi) - \frac{1}{2}log(|D_2|) -\frac{1}{2} E_1[(z - \mu_2)^{\prime} D_2^{-1}(z - \mu_2)] 
+\end{aligned}$$
+And
+$$\begin{aligned} 
+E_1[(z - \mu_2)^{\prime} D_2^{-1}(z - \mu_2)] =& E_1[(z - \mu_1 + \mu_1 - \mu_2)^{\prime} D_2^{-1}(z - \mu_1 + \mu_1 - \mu_2)] \\
+=& E_1[(z - \mu_1)^{\prime}D_2^{-1}(z - \mu_1) + (\mu_1 -\mu_2)^{\prime}D_2^{-1}(z - \mu_1) \\
+ & + (z - \mu_1)^{\prime}D_2^{-1} (\mu_1 -\mu_2) + (\mu_1 -\mu_2)^{\prime}D_2^{-1}(\mu_1 -\mu_2)] \\
+=& E_1[(z - \mu_1)^{\prime}D_2^{-1}(z - \mu_1)] + (\mu_1 -\mu_2)^{\prime}D_2^{-1}E_1(z - \mu_1) + \\
+ & E_1(z - \mu_1)^{\prime})D_2^{-1} (\mu_1 -\mu_2) +  (\mu_1 -\mu_2)^{\prime}D_2^{-1}(\mu_1 -\mu_2)\\
+=&E_1[(z - \mu_1)^{\prime}D_2^{-1}(z - \mu_1)]  + 0 + 0 +  (\mu_1 -\mu_2)^{\prime}D_2^{-1}(\mu_1 -\mu_2)
+\end{aligned}$$
+And 
+$$\begin{aligned}
+E_1[(z - \mu_1)^{\prime}D_2^{-1}(z - \mu_1)] =& E_1[tr((z - \mu_1)^{\prime}D_2^{-1}(z - \mu_1))] \\
+=& E_1[tr(D_2^{-1}(z - \mu_1)^{\prime}(z - \mu_1))] \\
+=& tr(E_1[D_2^{-1}(z - \mu_1)^{\prime}(z - \mu_1)]) \\
+=& tr(D_2^{-1} E_1[(z - \mu_1)^{\prime}(z - \mu_1)]) \\
+=& tr(D_2^{-1} D_1)
+\end{aligned}$$
+Therefore, 
+$$\begin{aligned}
+\int f_1 log f_2 = -\frac{p}{2} log(2\pi) - \frac{1}{2}log(|D_2|) -\frac{1}{2}\big( tr(D_2^{-1} D_1) + (\mu_1 -\mu_2)^{\prime}D_2^{-1}(\mu_1 -\mu_2)\big)
+\end{aligned}$$
+Similarly,
+$$\begin{aligned}
+\int f_2 log f_1 = -\frac{p}{2} log(2\pi) - \frac{1}{2}log(|D_1|) -\frac{1}{2}\big( tr(D_1^{-1} D_2) + (\mu_1 -\mu_2)^{\prime}D_1^{-1}(\mu_1 -\mu_2)\big)
+\end{aligned}$$
+
+Therefore, the function is:
+
+$$\begin{aligned}
+& \int log(f_1) f_1 - \int log(f_2) f_1 + \int log(f_2) f_2 - \int log(f_1) f_2 \\
+& =\big(-\frac{p}{2} log(2\pi) - \frac{1}{2}log(|D_1|) -\frac{p}{2}\big) \\
+& -\big( -\frac{p}{2} log(2\pi) - \frac{1}{2}log(|D_2|) -\frac{1}{2}\big( tr(D_2^{-1} D_1) + (\mu_1 -\mu_2)^{\prime}D_2^{-1}(\mu_1 -\mu_2)\big)\big) \\
+&+ \big(-\frac{p}{2} log(2\pi) - \frac{1}{2}log(|D_2|) -\frac{p}{2}\big) \\
+&- \big(-\frac{p}{2} log(2\pi) - \frac{1}{2}log(|D_1|) -\frac{1}{2}\big( tr(D_1^{-1} D_2) + (\mu_1 -\mu_2)^{\prime}D_1^{-1}(\mu_1 -\mu_2)\big)\big) \\
+& = -p + \frac{1}{2} tr(D_2^{-1} D_1) + \frac{1}{2} tr(D_1^{-1} D_2) + \frac{1}{2} (\mu_1 -\mu_2)^{\prime} (D_1^{-1} + D_2^{-1}) (\mu_1 -\mu_2)
+\end{aligned}$$
+Within this equation, $\mu_1 = \beta_1 + \Gamma_1 \alpha^{\prime} x$, $\mu_2 = \beta_2 + \Gamma_2 \alpha^{\prime}x$. Therefore,
+$$\begin{aligned}
+(\mu_1 -\mu_2)^{\prime} (D_1^{-1} + D_2^{-1}) (\mu_1 -\mu_2) =&  \big(\beta_1 - \beta_2 + (\Gamma_1 - \Gamma_2) \alpha^{\prime} x \big)^{\prime}  (D_1^{-1} + D_2^{-1}) \big(\beta_1 - \beta_2 + (\Gamma_1 - \Gamma_2) \alpha^{\prime} x \big) \\
+=& (\beta_1 - \beta_2) ^{\prime}  (D_1^{-1} + D_2^{-1}) (\beta_1 - \beta_2) + (\beta_1 - \beta_2) ^{\prime}  (D_1^{-1} + D_2^{-1}) (\Gamma_1 - \Gamma_2) \alpha^{\prime} x \\
++ & \big(\Gamma_1 - \Gamma_2) \alpha^{\prime} x \big) ^{\prime}(D_1^{-1} + D_2^{-1}) \big(\beta_1 - \beta_2 \big) + \big((\Gamma_1 - \Gamma_2) \alpha^{\prime} x \big) ^{\prime}(D_1^{-1} + D_2^{-1}) \big((\Gamma_1 - \Gamma_2) \alpha^{\prime} x \big) \\
+& = (\beta_1 - \beta_2) ^{\prime}  (D_1^{-1} + D_2^{-1}) (\beta_1 - \beta_2)  \\
+& + \big[ (\beta_1 - \beta_2) ^{\prime}  (D_1^{-1} + D_2^{-1}) (\Gamma_1 - \Gamma_2) + (\Gamma_1 - \Gamma_2) ^{\prime}(D_1^{-1} + D_2^{-1}) (\beta_1 - \beta_2 )\big]  x^{\prime}\alpha \\
+& + \alpha^{\prime} x \big((\Gamma_1 - \Gamma_2)  \big) ^{\prime}(D_1^{-1} + D_2^{-1}) \big((\Gamma_1 - \Gamma_2) \big)
+x^{\prime}\alpha
+\end{aligned}$$
+Let 
+$$g(\alpha) = \int log(f_1) f_1 - \int log(f_2) f_1 + \int log(f_2) f_2 - \int log(f_1) f_2$$
+Then 
+\color{blue} ?
+$$ \begin{aligned}
+\frac{\partial (g(\alpha))}{\partial \alpha} =&  \big[  (\Gamma_1 - \Gamma_2) ^{\prime}(D_1^{-1} + D_2^{-1}) (\beta_1 - \beta_2 )  x^{\prime}\alpha \\
+&+ \alpha^{\prime} x \big((\Gamma_1 - \Gamma_2)  \big) ^{\prime}(D_1^{-1} + D_2^{-1}) \big((\Gamma_1 - \Gamma_2) \big)
+x^{\prime}\alpha\big] ^{\prime} \\
+=& \big[ (\Gamma_1 - \Gamma_2) ^{\prime}(D_1^{-1} + D_2^{-1}) (\beta_1 - \beta_2 )  x^{\prime}\big] + \\
+& \alpha^{\prime}  \big[ x \big((\Gamma_1 - \Gamma_2)  \big) ^{\prime}(D_1^{-1} + D_2^{-1}) \big((\Gamma_1 - \Gamma_2) \big)
+x^{\prime}\big]  + \\
+& \alpha^{\prime}  \big[ x \big((\Gamma_1 - \Gamma_2)  \big) ^{\prime}(D_1^{-1} + D_2^{-1}) \big((\Gamma_1 - \Gamma_2) \big)
+x^{\prime}\big]^{\prime} 
+\end{aligned}$$
+
+\color{black}
+
+I am sorry I am a little bit confused about the derivative of $\frac{\partial X^{\prime}A X}{\partial X}$. I feel it should be $(A + A^{\prime}) X$ instead of the first eigenvector of matrix A. 
+
+Since: 
+
+https://atmos.washington.edu/~dennis/MatrixCalculus.pdf 
+
+```{R include = FALSE}
+library(png)
+library(grid)
+```
+
+```{r fig.width=5, fig.height=5,echo=FALSE,  fig.align = "center"}
+
+img <- readPNG("/Users/yaolanqiu/Desktop/NYU/Research/FDA/formula/2.png")
+ grid.raster(img)
+```
+
+If the above derivative is correct, then 
+
+$$\frac{\partial (g(\alpha))}{\partial \alpha} \equiv 0 \rightarrow $$
+$$\begin{aligned}
+&\big[ (\Gamma_1 - \Gamma_2) ^{\prime}(D_1^{-1} + D_2^{-1}) (\beta_1 - \beta_2 )  x^{\prime}\big] + \\
+& \alpha^{\prime}  \big[ x \big((\Gamma_1 - \Gamma_2)  \big) ^{\prime}(D_1^{-1} + D_2^{-1}) \big((\Gamma_1 - \Gamma_2) \big)
+x^{\prime}\big]  + \\
+& \alpha^{\prime}  \big[ x \big((\Gamma_1 - \Gamma_2)  \big) ^{\prime}(D_1^{-1} + D_2^{-1}) \big((\Gamma_1 - \Gamma_2) \big)
+x^{\prime}\big]^{\prime}  = 0
+\end{aligned}$$
+That is 
+\color{blue}
+$$\alpha = -(B + B^{\prime})^{-1}A$$
+where $A =(\Gamma_1 - \Gamma_2) ^{\prime}(D_1^{-1} + D_2^{-1}) (\beta_1 - \beta_2 )  x^{\prime}$, $B = x \big((\Gamma_1 - \Gamma_2)  \big) ^{\prime}(D_1^{-1} + D_2^{-1}) \big((\Gamma_1 - \Gamma_2) \big)
+x^{\prime}$
