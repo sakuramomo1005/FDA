@@ -13,4 +13,4 @@
 
 ![](https://github.com/sakuramomo1005/FDA/blob/master/Angles/180.gif)
 
-![](https://github.com/sakuramomo1005/FDA/blob/master/Angles/0to180s.gif)
+![](https://github.com/sakuramomo1005/FDA/blob/master/Angles/0to180plots.gif)
