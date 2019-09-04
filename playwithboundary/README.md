@@ -16,3 +16,6 @@
    go back to the previous boudnary plot, figure out why it changed the type of the curve? 
    
    how about if we just separate them into two groups? will the results consistent to want we think?  
+
+
+
