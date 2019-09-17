@@ -1,0 +1,154 @@
+---
+title: "Simulation to estimating alpha 2"
+date: 2019-09-11
+fontsize: 12pt
+output: pdf_document
+geometry: tmargin=1.8cm,bmargin=1.8cm,lmargin=2.1cm,rmargin=2.1cm
+---
+
+# Kullback-Leibler divergence
+
+For distributions $F_1$ and $F_2$ of a continuous random variable, the KL divergence is defined as: 
+\begin{equation} \label{eq0}
+D_{KL}(F_1 || F_2) = \int_{-\infty}^{+\infty}f_1(x)log(\frac{f_1(x)}{f_2(x)})dx
+\end{equation}
+where $f_1$ and $f_2$ denote the probability density of $F_1$ and $F_2$. 
+
+Therefore, we defined the *puirty* as
+$$\begin{aligned}
+& \int log(f_1) f_1 - \int log(f_2) f_1 + \int log(f_2) f_2 - \int log(f_1) f_2 \\
+& =\big(-\frac{p}{2} log(2\pi) - \frac{1}{2}log(|  D_1|) -\frac{p}{2}\big) \\
+& -\big( -\frac{p}{2} log(2\pi) - \frac{1}{2}log(|  D_2|) -\frac{1}{2}\big( tr(  D_2^{-1}   D_1) + (  \mu_1 -  \mu_2)^{\prime}  D_2^{-1}(  \mu_1 -  \mu_2)\big)\big) \\
+&+ \big(-\frac{p}{2} log(2\pi) - \frac{1}{2}log(|  D_2|) -\frac{p}{2}\big) \\
+&- \big(-\frac{p}{2} log(2\pi) - \frac{1}{2}log(|  D_1|) -\frac{1}{2}\big( tr(  D_1^{-1}   D_2) + (  \mu_1 -  \mu_2)^{\prime}  D_1^{-1}(  \mu_1 -  \mu_2)\big)\big) \\
+& = -p + \frac{1}{2} tr(  D_2^{-1}   D_1) + \frac{1}{2} tr(  D_1^{-1}   D_2) + \frac{1}{2} (  \mu_1 -  \mu_2)^{\prime} (  D_1^{-1} +   D_2^{-1}) (  \mu_1 -  \mu_2)
+\end{aligned}$$
+where $\mu_1 =  \beta_1 +   \Gamma_1   \alpha^{\prime}   x$, 
+$\mu_2 =   \beta_2 +   \Gamma_2   \alpha^{\prime}   x$.
+
+That is:
+$$\text{KL purity } = -p + \frac{1}{2} tr(  D_2^{-1}   D_1) + \frac{1}{2} tr(  D_1^{-1}   D_2) + \frac{1}{2} (  \mu_1 -  \mu_2)^{\prime} (  D_1^{-1} +   D_2^{-1}) (  \mu_1 -  \mu_2)$$
+
+The optimization of $\alpha$: 
+$$\alpha  = -2B^{-1}A^{\prime}$$
+where
+
+* $A = \sum_i (  \Gamma_1 -   \Gamma_2) ^{\prime}(  D_1^{-1} +   D_2^{-1}) (  \beta_1 -   \beta_2 )    x_i ^{\prime}$
+
+* $B = \sum_i   x_i  \big((  \Gamma_1 -   \Gamma_2)  \big) ^{\prime}(  D_1^{-1} +   D_2^{-1}) \big((  \Gamma_1 -   \Gamma_2) \big)  x_i ^{\prime}$
+
+
+
+
+# Simulation Setting
+
+Sample size:
+
+* 200 subjects in each group, 400 in total. 
+
+Dimensions:
+
+* p = 4. (4 baseline biosignature)
+
+Angle between $\Gamma_1$ and $\Gamma_3$: 
+
+* scenario: $0, 30,  60, 90, 120, 150, 180$ degrees.
+
+Initial value:  True $\alpha$
+
+Simulation time: 500
+
+Parameters
+
+* Each subject has 7 time points: $2 \times 100 \times 7 = 1400$  
+
+* True $\alpha = [0.5, 0.5, 0.5, 0.5]^{\prime}$
+
+* $\beta_{pbo} = [0, 3, 0.9]^{\prime}, \beta_{drg} = [0, 3.1, 1]^{\prime}$
+
+* $\Gamma_{drg} = [0,1,0]^{\prime}$, angle between the two $\Gamma$ lines can be 0, 30, 60, 90, 120, 150, and 180 degrees. 
+
+* $|\Gamma_{drg}| = |\Gamma_{pbo}| = 1$
+
+
+# Result
+
+```{R include = FALSE}
+library(knitr)
+library(png)
+library(grid)
+```
+
+#### $\alpha$ calculated by $\hat \beta_{drg}, \hat \beta_{pbo}, \hat \Gamma_{drg}, \hat \Gamma_{pbo}, \hat D_{drg}, \hat D_{pbo}$
+
+```{R echo = FALSE}
+setwd('/Users/yaolanqiu/Desktop/NYU/Research/FDA/alpha_optimization_2019-09-07/cluster2/FDA_alpha2')
+load('res_d.RData')
+colnames(res_d) = c('Angle','Mean KL dif','Mean KL', 'SD KL', 'Mean cosine', 'SD cosine')
+kable(res_d)
+```
+
+* Mean_KL_dif: the mean absolute differences between true *purity*  and the estimated $\hat {purity}$ during the 500 times replication. 
+
+* Mean_KL: The mean value of the estimated *purity* 
+
+* SD_KL: The standard deviation value of the estimated  *purity*
+
+* Mean_cosine: the mean value of the cosine_similarity. 
+
+* SD_cosine: The standard deviation value of the cosine_similarity
+
+
+##### The histogram of purity
+
+```{r fig.width=8, fig.height=4,echo=FALSE,  fig.align = "center"}
+img <- readPNG('/Users/yaolanqiu/Desktop/NYU/Research/FDA/alpha_optimization_2019-09-07/cluster2/FDA_alpha2/KL.png')
+grid.raster(img)
+```
+
+
+##### The histogram of the consine similarity 
+
+
+```{r fig.width=8, fig.height=4,echo=FALSE,  fig.align = "center"}
+img <- readPNG('/Users/yaolanqiu/Desktop/NYU/Research/FDA/alpha_optimization_2019-09-07/cluster2/FDA_alpha2/D.png')
+grid.raster(img)
+```
+
+
+#### $\alpha$ calculated by $\hat \beta_{drg}, \hat \beta_{pbo}, \hat \Gamma_{drg}, \hat \Gamma_{pbo},$ true $D_{drg},D_{pbo}$
+
+```{R echo = FALSE}
+setwd('/Users/yaolanqiu/Desktop/NYU/Research/FDA/alpha_optimization_2019-09-07/cluster2/FDA_alpha2')
+load('res_d2.RData')
+colnames(res_d2) = c('Angle','Mean KL dif','Mean KL', 'SD KL', 'Mean cosine', 'SD cosine')
+kable(res_d2)
+```
+
+
+* Mean_KL_dif: the mean absolute differences between true *purity*  and the estimated $\hat {purity}$ during the 500 times replication. 
+
+* Mean_KL: The mean value of the estimated *purity* 
+
+* SD_KL: The standard deviation value of the estimated  *purity*
+
+* Mean_cosine: the mean value of the cosine_similarity. 
+
+* SD_cosine: The standard deviation value of the cosine_similarity
+
+
+##### The histogram of purity
+
+```{r fig.width=8, fig.height=4,echo=FALSE,  fig.align = "center"}
+img <- readPNG('/Users/yaolanqiu/Desktop/NYU/Research/FDA/alpha_optimization_2019-09-07/cluster2/FDA_alpha2/trueKL.png')
+grid.raster(img)
+```
+
+
+##### The histogram of the consine similarity 
+
+```{r fig.width=8, fig.height=4,echo=FALSE,  fig.align = "center"}
+img <- readPNG('/Users/yaolanqiu/Desktop/NYU/Research/FDA/alpha_optimization_2019-09-07/cluster2/FDA_alpha2/trueD.png')
+grid.raster(img)
+```
+
