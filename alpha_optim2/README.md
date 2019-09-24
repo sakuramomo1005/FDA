@@ -1,5 +1,5 @@
 
-## MEETING SEP 23
+## MEETING SEP 23 . 
 
 TO DO LIST
 
