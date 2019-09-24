@@ -1,6 +1,6 @@
 
 ### Trajectory plots for the four group
-
+  
 
 why no output? 
 
