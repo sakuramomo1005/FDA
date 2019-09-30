@@ -20,3 +20,4 @@ TO DO LIST
 5. Iteration? talked last time
    + given the best alpha, we can get the hat beta, gamma and d
    + given the hat beta, gamma, and d, we can get the best alpha
+
