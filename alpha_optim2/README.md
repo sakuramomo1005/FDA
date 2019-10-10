@@ -21,3 +21,32 @@ TO DO LIST
    + given the best alpha, we can get the hat beta, gamma and d
    + given the hat beta, gamma, and d, we can get the best alpha
 
+
+
+## After meeting Oct 1. 
+
+Results: 
+
+##### Simulation 
+
++ multi.R: simulation with p = 10, try purity calculation with different number of covariates combination. 
++ multi.RData: RData file, call "multi", saved the multi table for 2,4,8,10 covariates combination, and time with each of the one covariate. 
++ one_table.RData: results are wrapped in multi.RData, not very useful. 
++ two_table.RData
++ four_table.RData
++ eight_table.RData
++ ten_table.RData
+
++ result_combine.RData: simulation combined results, with each KL purity and cosine similiarity. 
++ hist_2D: histogram of purity with different angles. Two different LME models were fitted. 
++ hist_2D: histogram of purity with different angles. One model was fitted to make D1 = D2
+
+
+##### Embarc
+
++ alt_old_one_table22.RData: purity with only one covaritate included. 
++ two_table2.RData: purity with two covariates included. 
++ three_table2.RData
++ all_table2.RData: with all covaraites included
+
+All results were wraped in the pdf file. 
